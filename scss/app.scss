@@ -1,2 +1,11 @@
 @import "settings";
 @import "foundation";
+
+$header-image: image-url("background.jpg");
+$header-height: 450px;
+
+#pc-header {
+  background-color: black;
+  background-image: $header-image;
+  height: $header-height;
+}

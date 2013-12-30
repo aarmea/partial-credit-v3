@@ -1,4 +1,15 @@
-/bower_components/*
-/.sass-cache/*
-*.DS_Store
-/stylesheets/*
+# Vagrant instance-specific configuration
+.vagrant
+
+# SASS cache
+.sass-cache
+
+# OS-specific indices
+.DS_Store
+Thumbs.db
+
+# Sublime Text workspace
+*.sublime-workspace
+
+# Vim swap files
+*.swp

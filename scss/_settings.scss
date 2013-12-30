@@ -1,2 +1,28 @@
-// The latest settings can be found here:
-// https://github.com/zurb/bower-foundation/blob/master/scss/foundation/_settings.scss
+//
+// FOUNDATION SETTINGS
+//
+
+$body-bg: #000;
+$body-font-color: #ddd;
+$body-font-family: "Open Sans", Helvetica, Arial, sans-serif;
+$body-font-weight: normal;
+$body-font-style: normal;
+
+$header-font-family: "PT Sans Narrow", "Open Sans Narrow", "Helvetica Narrow", "Arial Narrow", sans-serif;
+$header-font-weight: bold;
+$header-font-color: $body-font-color;
+
+// We use these as default colors throughout
+// From http://colorschemedesigner.com/ using the default accented analogic
+// color scheme of #15bcb6
+$primary-color: #15bcb6;
+$secondary-color: #e7e7e7;
+$alert-color: #f04124;
+$success-color: #43a838;
+$warning-color: #ff811c;
+$info-color: #2958c7;
+
+$form-label-font-color: darken($body-font-color, 30%);
+
+// We use these to control the background and border styles
+$panel-bg: lighten($body-bg, 15%);
