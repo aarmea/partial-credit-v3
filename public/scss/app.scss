@@ -1,11 +1,42 @@
 @import "settings";
 @import "foundation";
 
-$header-image: image-url("background.jpg");
-$header-height: 450px;
+$pc-header-height-small: 240px;
+$pc-header-height-medium: 320px;
+$pc-header-height-large: 360px;
 
 #pc-header {
   background-color: black;
-  background-image: $header-image;
-  height: $header-height;
+  background-image: image-url("background.jpg");
+  background-position: center bottom;
+  background-size: cover;
+  height: $pc-header-height-small;
+  @media #{$medium-up} {
+    height: $pc-header-height-medium;
+  }
+  @media #{$large-up} {
+    height: $pc-header-height-large;
+  }
+  text-align: center;
+}
+
+#pc-logo {
+  width: 90%;
+  max-height: $pc-header-height-small - 84px;
+  @media #{$medium-up} {
+    max-height: inherit;
+  }
+}
+
+.header-links {
+  @include block-grid($per-row: 3, $spacing: 0px);
+  a {
+    font-family: $header-font-family;
+    font-weight: $header-font-weight;
+    font-size: 16pt;
+    @media #{$medium-up} {
+      font-size: 22pt;
+    }
+    color: $body-font-color;
+  }
 }

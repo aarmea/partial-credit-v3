@@ -3,14 +3,14 @@
 //
 
 $body-bg: #000;
-$body-font-color: #ddd;
+$body-font-color: #fff;
 $body-font-family: "Open Sans", Helvetica, Arial, sans-serif;
 $body-font-weight: normal;
 $body-font-style: normal;
 
 $header-font-family: "PT Sans Narrow", "Open Sans Narrow", "Helvetica Narrow", "Arial Narrow", sans-serif;
 $header-font-weight: bold;
-$header-font-color: $body-font-color;
+$header-font-color: darken($body-font-color, 10%);
 
 // We use these as default colors throughout
 // From http://colorschemedesigner.com/ using the default accented analogic
