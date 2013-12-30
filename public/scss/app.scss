@@ -18,6 +18,21 @@ $pc-header-height-large: 360px;
     height: $pc-header-height-large;
   }
   text-align: center;
+
+  // Vertical centering using http://css-tricks.com/centering-in-the-unknown/
+  .row {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+// Vertical centering using http://css-tricks.com/centering-in-the-unknown/
+#pc-header:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em;
 }
 
 #pc-logo {
