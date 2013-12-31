@@ -20,12 +20,12 @@ require_once('settings.php');
             id="pc-logo" alt="Partial Credit A Cappella">
           </a>
           <ul class="header-links">
-            <li><a href="#">News</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Photos</a></li>
-            <li><a href="#">Auditions</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">YouTube</a></li>
+            <li><a href="?p=news">News</a></li>
+            <li><a href="?p=about">About Us</a></li>
+            <li><a href="?p=photos">Photos</a></li>
+            <li><a href="?p=auditions">Auditions</a></li>
+            <li><a href="?p=contact">Contact</a></li>
+            <li><a href="https://www.youtube.com/user/PartialCreditRPI">YouTube</a></li>
           </ul>
         </div>
         <div class="small-6 show-for-medium-up columns">
