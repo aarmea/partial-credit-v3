@@ -1,5 +1,11 @@
 @import "settings";
 @import "foundation";
+@import "compass/layout/sticky-footer";
+
+// Like Bootstrap's "pull-right"
+.pull-right {
+  float: right;
+}
 
 $pc-header-height-small: 240px;
 $pc-header-height-medium: 320px;
@@ -55,4 +61,11 @@ $pc-header-height-large: 360px;
     }
     color: $body-font-color;
   }
+}
+
+// Footer
+@include sticky-footer(2em, "#pc-layout", "#pc-layout-footer", "#pc-footer");
+footer {
+  padding-top: 1em;
+  font-size: small;
 }
