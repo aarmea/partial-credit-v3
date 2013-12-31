@@ -21,6 +21,7 @@ $pc-header-height-large: 360px;
 
   // Vertical centering using http://css-tricks.com/centering-in-the-unknown/
   .row {
+    width: 99%; // Firefox needs somewhere to put the :before empty string
     display: inline-block;
     vertical-align: middle;
   }
