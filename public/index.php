@@ -49,6 +49,7 @@ require_once('php/templates.php');
         <a href="admin.php" class="pull-right">Member Login</a>
       &copy; 2013 Partial Credit
       &middot; Site by <a href="http://www.albertarmea.com">Albert Armea</a>
+      &middot; Source on <a href="https://github.com/aarmea/partial-credit-v3">GitHub</a>
     </footer>
 
     <script src="bower_components/jquery/jquery.js"></script>
