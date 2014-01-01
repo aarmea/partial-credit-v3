@@ -38,6 +38,7 @@ try {
     `first_name` VARCHAR(64) NOT NULL,
     `full_name` VARCHAR(64) NOT NULL,
     `nickname` VARCHAR(64),
+    `voice_part` VARCHAR(10),
     `major` VARCHAR(64),
     `yog` YEAR,
     `photo_url` VARCHAR(64),
