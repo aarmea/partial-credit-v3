@@ -1,4 +1,5 @@
 <?
+$SITE_TITLE = 'Partial Credit';
 $TEMPLATES = array(
   'news' => array(
     'title' => 'News',
@@ -29,6 +30,11 @@ if (array_key_exists($_GET['p'], $TEMPLATES)) {
   $templateName = $_GET['p'];
 } else {
   $templateName = $DEFAULT_TEMPLATE;
+}
+
+function pageTitle($templateName) {
+  global $SITE_TITLE, $TEMPLATES;
+  return $SITE_TITLE . ': ' . $TEMPLATES[$templateName]['title'];
 }
 
 // Includes a named template, adding the specified level of indentation.

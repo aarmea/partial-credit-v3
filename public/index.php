@@ -1,5 +1,5 @@
 <?
-require_once('settings.php');
+require_once('php/templates.php');
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
