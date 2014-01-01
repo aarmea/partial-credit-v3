@@ -46,7 +46,7 @@ require_once('settings.php');
 
     <!-- Partial Credit footer -->
     <footer id="pc-footer" class="row">
-        <a href="login.php" class="pull-right">Member Login</a>
+        <a href="admin.php" class="pull-right">Member Login</a>
       &copy; 2013 Partial Credit
       &middot; Site by <a href="http://www.albertarmea.com">Albert Armea</a>
     </footer>
