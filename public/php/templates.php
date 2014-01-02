@@ -1,25 +1,38 @@
 <?
+require_once('php/auth/cas_init.php');
+require_once('php/classes/member.php');
+
 $SITE_TITLE = 'Partial Credit';
 $TEMPLATES = array(
   'news' => array(
     'title' => 'News',
-    'filename' => 'news.tpl.php'
+    'filename' => 'news.tpl.php',
+    'needs_auth' => False
   ),
   'about' => array(
     'title' => 'About Us',
-    'filename' => 'about.tpl.php'
+    'filename' => 'about.tpl.php',
+    'needs_auth' => False
   ),
   'photos' => array(
     'title' => 'Photos',
-    'filename' => 'photos.tpl.php'
+    'filename' => 'photos.tpl.php',
+    'needs_auth' => False
   ),
   'auditions' => array(
     'title' => 'Auditions',
-    'filename' => 'auditions.tpl.php'
+    'filename' => 'auditions.tpl.php',
+    'needs_auth' => False
   ),
   'contact' => array(
     'title' => 'Contact',
-    'filename' => 'contact.tpl.php'
+    'filename' => 'contact.tpl.php',
+    'needs_auth' => False
+  ),
+  'member_home' => array(
+    'title' => 'Member Home',
+    'filename' => 'member_home.tpl.php',
+    'needs_auth' => True
   )
 );
 $DEFAULT_TEMPLATE = 'news';
@@ -32,6 +45,14 @@ if (array_key_exists($_GET['p'], $TEMPLATES)) {
   $templateName = $DEFAULT_TEMPLATE;
 }
 
+// Authenticate with phpCAS if the template requires authentication
+if ($TEMPLATES[$templateName]['needs_auth']) {
+  phpCAS::forceAuthentication();
+  $currentUser = new Member(phpCAS::getUser());
+} else {
+  $currentUser = false;
+}
+
 function pageTitle($templateName) {
   global $SITE_TITLE, $TEMPLATES;
   return $SITE_TITLE . ': ' . $TEMPLATES[$templateName]['title'];
@@ -41,12 +62,19 @@ function pageTitle($templateName) {
 // Based heavily on TemplatePrint by @Diogenesthecynic in
 // https://github.com/Diogenesthecynic/Bookswap/blob/master/PHP/templates.inc.php
 function templatePrint($templateName, $indent=0) {
-  global $TEMPLATES, $DEFAULT_TEMPLATE, $TEMPLATE_PATH;
+  global $TEMPLATES, $DEFAULT_TEMPLATE, $TEMPLATE_PATH, $SITE_TITLE, $currentUser;
+  $prefix = str_repeat('  ', $indent);
+
+  if ($TEMPLATES[$templateName]['needs_auth'] && !$currentUser->exists()) {
+    echo $prefix .
+      "<div class='row'>You must be a current member of $SITE_TITLE to access this area.</div>";
+    return;
+  }
+
   $content = trim(
     file_get_contents($TEMPLATE_PATH . $TEMPLATES[$templateName]['filename']));
 
   // Indent all lines of $content.
-  $prefix = str_repeat('  ', $indent);
   $content =
     $prefix . str_replace(PHP_EOL, PHP_EOL . $prefix, $content) . PHP_EOL;
 
