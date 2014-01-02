@@ -38,6 +38,11 @@ $TEMPLATES = array(
     'title' => 'Edit Profile',
     'filename' => 'profile_edit.tpl.php',
     'needs_auth' => True
+  ),
+  'profile_photo_edit' => array(
+    'title' => 'Edit Profile Picture',
+    'filename' => 'profile_photo_edit.tpl.php',
+    'needs_auth' => True
   )
 );
 $DEFAULT_TEMPLATE = 'news';

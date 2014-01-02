@@ -2,6 +2,9 @@
 require_once('php/db/init.php');
 
 $VOICE_PARTS = array('soprano', 'alto', 'tenor', 'bass');
+$PHOTO_DIRECTORY = 'photos/members/';
+$PHOTO_EXTENSION = '.jpg';
+$PHOTO_MAX_SIZE = 1048576; // bytes
 
 class Member {
   private $rcsid = "";
@@ -13,7 +16,6 @@ class Member {
   private $major = "";
   private $yog = -1;
   private $bio = "";
-  private $photoURL = "";
 
   public function __construct($rcsid) {
     // TODO: Performance: Add a lightweight constructor that doesn't get all of
@@ -21,7 +23,7 @@ class Member {
     global $db;
     $query = $db->prepare(
       "SELECT `rcsid`, `is_admin`, `first_name`, `full_name`,
-      `nickname`, `voice_part`, `major`, `yog`, `bio`, `photo_url`
+      `nickname`, `voice_part`, `major`, `yog`, `bio`
       FROM `members` WHERE `rcsid` = :rcsid;"
     );
     $query->execute(array(":rcsid" => $rcsid));
@@ -37,7 +39,6 @@ class Member {
     $this->major = $member->major;
     $this->yog = $member->yog;
     $this->bio = $member->bio;
-    $this->photoURL = $member->photo_url;
   }
 
   public function exists() {
@@ -81,7 +82,33 @@ class Member {
   }
 
   public function photoURL() {
-    return $this->photoURL;
+    global $PHOTO_DIRECTORY, $PHOTO_EXTENSION;
+    $path = $PHOTO_DIRECTORY . $this->rcsid . $PHOTO_EXTENSION;
+    if (file_exists($path)) {
+      return $path;
+    } else {
+      return false;
+    }
+  }
+
+  public function replacePhoto($newFileInfo) {
+    global $PHOTO_DIRECTORY, $PHOTO_MAX_SIZE, $PHOTO_EXTENSION;
+
+    // Sanity checking
+    if ($newFileInfo['size'] == 0) {
+      die('No file received.');
+    } elseif ($newFileInfo['size'] > $PHOTO_MAX_SIZE) {
+      die('Uploaded photo is too large.');
+    } elseif (exif_imagetype($newFileInfo['tmp_name']) != IMAGETYPE_JPEG) {
+      die('Invalid image format');
+    }
+
+    // Move the new file into place
+    if (!move_uploaded_file($newFileInfo['tmp_name'],
+      $PHOTO_DIRECTORY . $this->rcsid . $PHOTO_EXTENSION))
+    {
+      die('Could not move the uploaded file');
+    }
   }
 }
 

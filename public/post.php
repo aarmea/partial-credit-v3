@@ -10,6 +10,15 @@ $ACTIONS = array(
     'redirect' => './?p=about',
     'needs_auth' => true,
     'verify_rcsid' => true
+  ),
+  'profile_photo_edit' => array(
+    'execute' => function() {
+      $profileEdited = new Member($_POST['rcsid']);
+      $profileEdited->replacePhoto($_FILES['new_profile_photo']);
+    },
+    'redirect' => './?p=about',
+    'needs_auth' => true,
+    'verify_rcsid' => true
   )
 );
 
