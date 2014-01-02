@@ -1,12 +1,15 @@
 <?
 require_once('php/db/init.php');
 
+$VOICE_PARTS = array('soprano', 'alto', 'tenor', 'bass');
+
 class Member {
   private $rcsid = "";
   private $isAdmin = false;
   private $firstName = "";
   private $fullName = "";
   private $nickname = "";
+  private $voicePart = "";
   private $major = "";
   private $yog = -1;
   private $photoURL = "";
@@ -15,7 +18,7 @@ class Member {
     global $db;
     $query = $db->prepare(
       "SELECT `rcsid`, `is_admin`, `first_name`, `full_name`,
-      `nickname`, `major`, `yog`, `photo_url`
+      `nickname`, `voice_part`, `major`, `yog`, `photo_url`
       FROM `members` WHERE `rcsid` = :rcsid;"
     );
     $query->execute(array(":rcsid" => $rcsid));
@@ -27,6 +30,7 @@ class Member {
     $this->firstName = $member->first_name;
     $this->fullName = $member->full_name;
     $this->nickname = $member->nickname;
+    $this->voicePart = $member->voice_part;
     $this->major = $member->major;
     $this->yog = $member->yog;
     $this->photoURL = $member->photo_url;
@@ -54,6 +58,10 @@ class Member {
 
   public function nickname() {
     return $this->nickname;
+  }
+
+  public function voicePart() {
+    return $this->voicePart;
   }
 
   public function major() {

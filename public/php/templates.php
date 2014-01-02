@@ -33,6 +33,11 @@ $TEMPLATES = array(
     'title' => 'Member Home',
     'filename' => 'member_home.tpl.php',
     'needs_auth' => True
+  ),
+  'profile_edit' => array(
+    'title' => 'Edit Profile',
+    'filename' => 'profile_edit.tpl.php',
+    'needs_auth' => True
   )
 );
 $DEFAULT_TEMPLATE = 'news';
@@ -83,6 +88,6 @@ function templatePrint($templateName, $indent=0) {
   // * The $TEMPLATES whitelist ensures that there is no way for a user to edit
   //   the 'eval'ed code.
   // * This is the cleanest way to include code and indent it properly.
-  eval('$TEMPLATE_PREFIX = "' . $prefix . '"?>' . $content);
+  eval('global $INDENT; $INDENT = "' . $prefix . '";?>' . $content);
 }
 ?>
