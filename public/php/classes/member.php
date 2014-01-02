@@ -12,13 +12,16 @@ class Member {
   private $voicePart = "";
   private $major = "";
   private $yog = -1;
+  private $bio = "";
   private $photoURL = "";
 
   public function __construct($rcsid) {
+    // TODO: Performance: Add a lightweight constructor that doesn't get all of
+    // these parameters
     global $db;
     $query = $db->prepare(
       "SELECT `rcsid`, `is_admin`, `first_name`, `full_name`,
-      `nickname`, `voice_part`, `major`, `yog`, `photo_url`
+      `nickname`, `voice_part`, `major`, `yog`, `bio`, `photo_url`
       FROM `members` WHERE `rcsid` = :rcsid;"
     );
     $query->execute(array(":rcsid" => $rcsid));
@@ -33,6 +36,7 @@ class Member {
     $this->voicePart = $member->voice_part;
     $this->major = $member->major;
     $this->yog = $member->yog;
+    $this->bio = $member->bio;
     $this->photoURL = $member->photo_url;
   }
 
@@ -72,6 +76,10 @@ class Member {
     return $this->yog;
   }
 
+  public function bio() {
+    return $this->bio;
+  }
+
   public function photoURL() {
     return $this->photoURL;
   }
@@ -83,17 +91,18 @@ function editMember($memberInfo) {
   $editUser = $db->prepare(
     "UPDATE `members`
     SET `first_name`=:first_name, `full_name`=:full_name, `nickname`=:nickname,
-    `voice_part`=:voice_part, `major`=:major, `yog`=:yog
+    `voice_part`=:voice_part, `major`=:major, `yog`=:yog, `bio`=:bio
     WHERE `rcsid`=:rcsid;"
   );
   $editUser->execute(array(
-    ':rcsid' => $memberInfo['rcsid'],
-    ':first_name' => $memberInfo['first_name'],
-    ':full_name' => $memberInfo['full_name'],
-    ':nickname' => $memberInfo['nickname'],
-    ':voice_part' => strtolower($memberInfo['voice_part']),
-    ':major' => $memberInfo['major'],
-    ':yog' => $memberInfo['yog']
+    ':rcsid' => htmlspecialchars($memberInfo['rcsid']),
+    ':first_name' => htmlspecialchars($memberInfo['first_name']),
+    ':full_name' => htmlspecialchars($memberInfo['full_name']),
+    ':nickname' => htmlspecialchars($memberInfo['nickname']),
+    ':voice_part' => strtolower(htmlspecialchars($memberInfo['voice_part'])),
+    ':major' => htmlspecialchars($memberInfo['major']),
+    ':yog' => htmlspecialchars($memberInfo['yog']),
+    ':bio' => htmlspecialchars($memberInfo['bio'])
   ));
 }
 ?>

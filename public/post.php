@@ -5,7 +5,7 @@ require_once('php/classes/member.php');
 $ACTIONS = array(
   'profile_edit' => array(
     'execute' => function() {
-      editMember($_POST);
+      editMember(array_map('stripslashes', $_POST));
     },
     'redirect' => './?p=about',
     'needs_auth' => true,

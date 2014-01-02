@@ -7,6 +7,12 @@
   float: right;
 }
 
+// Foundation's textarea height is broken
+// https://github.com/zurb/foundation/issues/2127
+textarea {
+  height: auto;
+}
+
 $pc-header-height-small: 240px;
 $pc-header-height-medium: 320px;
 $pc-header-height-large: 360px;

@@ -3,7 +3,7 @@ require_once('php/classes/member.php');
 
 $profileEdited = $currentUser;
 // TODO: Allow administrators to edit other member's profiles
-// TODO: Implement bios and profile pictures
+// TODO: Implement profile pictures
 
 function voiceParts($selectedPart, $indent=0) {
   global $INDENT, $VOICE_PARTS;
@@ -83,6 +83,14 @@ function voiceParts($selectedPart, $indent=0) {
             <div class="small-8 columns">
               <input type="number" inputmode="numeric" min="2014" id="yog" name="yog"
                 value="<?=$profileEdited->yog()?>">
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-4 columns">
+              <label for="bio" class="right inline">Bio</label>
+            </div>
+            <div class="small-8 columns">
+              <textarea id="bio" name="bio" rows="8"><?=$profileEdited->bio()?></textarea>
             </div>
           </div>
           <div class="row">

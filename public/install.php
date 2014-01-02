@@ -41,6 +41,7 @@ try {
     `voice_part` VARCHAR(10),
     `major` VARCHAR(64),
     `yog` YEAR,
+    `bio` TEXT(1024),
     `photo_url` VARCHAR(64),
     PRIMARY KEY (`rcsid`)
   ) ENGINE=InnoDB;";
