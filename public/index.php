@@ -17,7 +17,7 @@ require_once('php/templates.php');
       <header id="pc-header">
         <div class="row">
           <div class="large-6 medium-6 small-12 columns">
-            <a href="#">
+            <a href=".">
               <img src="images/logo.svg" onerror="this.src=images/logo.png"
               id="pc-logo" alt="Partial Credit A Cappella">
             </a>
