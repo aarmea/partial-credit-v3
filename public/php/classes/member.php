@@ -76,4 +76,24 @@ class Member {
     return $this->photoURL;
   }
 }
+
+function editMember($memberInfo) {
+  global $db;
+
+  $editUser = $db->prepare(
+    "UPDATE `members`
+    SET `first_name`=:first_name, `full_name`=:full_name, `nickname`=:nickname,
+    `voice_part`=:voice_part, `major`=:major, `yog`=:yog
+    WHERE `rcsid`=:rcsid;"
+  );
+  $editUser->execute(array(
+    ':rcsid' => $memberInfo['rcsid'],
+    ':first_name' => $memberInfo['first_name'],
+    ':full_name' => $memberInfo['full_name'],
+    ':nickname' => $memberInfo['nickname'],
+    ':voice_part' => strtolower($memberInfo['voice_part']),
+    ':major' => $memberInfo['major'],
+    ':yog' => $memberInfo['yog']
+  ));
+}
 ?>

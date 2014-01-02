@@ -3,6 +3,7 @@ require_once('php/classes/member.php');
 
 $profileEdited = $currentUser;
 // TODO: Allow administrators to edit other member's profiles
+// TODO: Implement bios and profile pictures
 
 function voiceParts($selectedPart, $indent=0) {
   global $INDENT, $VOICE_PARTS;
@@ -24,6 +25,7 @@ function voiceParts($selectedPart, $indent=0) {
 ?><div class="row">
   <div class="large-12 columns">
     <h1>Edit Profile: <?=$profileEdited->rcsid()?></h1>
+    <p>These values are displayed publicly on the "About Us" page.</p>
     <form action="post.php" method="post">
       <input type="hidden" name="rcsid" value="<?=$profileEdited->rcsid()?>">
       <div class="row">
