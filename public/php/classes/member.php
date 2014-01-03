@@ -112,6 +112,17 @@ class Member {
     }
   }
 
+  function setAdmin($makeAdmin) {
+    global $db;
+    $query = $db->prepare(
+      'UPDATE `members` SET `is_admin`=:is_admin WHERE `rcsid`=:rcsid'
+    );
+    $query->execute(array(
+      ':rcsid' => $this->rcsid,
+      ':is_admin' => $makeAdmin
+    ));
+  }
+
   function deleteFromDB() {
     global $db;
     if ($this->photoURL()) {

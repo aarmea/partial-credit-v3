@@ -31,6 +31,17 @@ $ACTIONS = array(
     'verify_rcsid' => false,
     'needs_admin' => true
   ),
+  'change_member_permissions' => array(
+    'execute' => function() {
+      $profileEdited = new Member($_POST['rcsid']);
+      // Checkboxes are only sent if checked
+      $profileEdited->setAdmin(isset($_POST['admin']));
+    },
+    'redirect' => './?p=manage_members',
+    'needs_auth' => true,
+    'verify_rcsid' => false,
+    'needs_admin' => true
+  ),
   'remove_member' => array(
     'execute' => function() {
       $profileEdited = new Member($_POST['rcsid']);

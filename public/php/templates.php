@@ -64,6 +64,12 @@ $TEMPLATES = array(
     'needs_auth' => True,
     'needs_admin' => True
   ),
+  'member_permissions' => array(
+    'title' => 'Member Permissions',
+    'filename' => 'member_permissions.tpl.php',
+    'needs_auth' => True,
+    'needs_admin' => True
+  ),
   'remove_member' => array(
     'title' => 'Remove Member',
     'filename' => 'remove_member.tpl.php',
