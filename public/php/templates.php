@@ -57,6 +57,12 @@ $TEMPLATES = array(
     'filename' => 'add_member.tpl.php',
     'needs_auth' => True,
     'needs_admin' => True
+  ),
+  'manage_members' => array(
+    'title' => 'Manage Members',
+    'filename' => 'list_members.tpl.php',
+    'needs_auth' => True,
+    'needs_admin' => True
   )
 );
 $DEFAULT_TEMPLATE = 'news';

@@ -6,6 +6,7 @@
       <li><a href="?p=profile_photo_edit">Change your profile picture</a></li>
 <? if ($currentUser->isAdmin()) { ?>
       <li><a href="?p=add_member">Add a member</a></li>
+      <li><a href="?p=manage_members">Manage members</a></li>
 <? } ?>
       <li><a href="logout.php">Log out</a></li>
     </ul>

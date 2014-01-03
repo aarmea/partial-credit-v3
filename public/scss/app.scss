@@ -1,6 +1,8 @@
 @import "settings";
 @import "foundation";
 @import "compass/layout/sticky-footer";
+@import "compass/typography/lists/bullets";
+@import "compass/typography/lists/horizontal-list";
 
 // Like Bootstrap's "pull-right"
 .pull-right {
@@ -74,4 +76,13 @@ $pc-header-height-large: 360px;
 footer {
   padding-top: 1em;
   font-size: small;
+}
+
+// Member management page
+.member-list {
+  @include no-bullets;
+  .actions-list {
+    @include horizontal-list;
+    float: right;
+  }
 }

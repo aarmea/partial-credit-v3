@@ -157,4 +157,11 @@ function editMember($memberInfo) {
     ':bio' => htmlspecialchars($memberInfo['bio'])
   ));
 }
+
+function listMembersAlpha() {
+  global $db;
+  $query = $db->prepare("SELECT `rcsid`, `full_name` FROM `members`");
+  $query->execute();
+  return $query->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
