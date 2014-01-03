@@ -9,7 +9,8 @@ $ACTIONS = array(
     },
     'redirect' => './?p=about',
     'needs_auth' => true,
-    'verify_rcsid' => true
+    'verify_rcsid' => true,
+    'needs_admin' => false
   ),
   'profile_photo_edit' => array(
     'execute' => function() {
@@ -18,7 +19,17 @@ $ACTIONS = array(
     },
     'redirect' => './?p=about',
     'needs_auth' => true,
-    'verify_rcsid' => true
+    'verify_rcsid' => true,
+    'needs_admin' => false
+  ),
+  'add_member' => array(
+    'execute' => function() {
+      addMemberFromDirectory($_POST['rcsid']);
+    },
+    'redirect' => './?p=profile_edit&member=' . $_POST['rcsid'],
+    'needs_auth' => true,
+    'verify_rcsid' => false,
+    'needs_admin' => true
   )
 );
 
@@ -40,6 +51,9 @@ if ($actions[$action]['verify_rcsid']) {
   if ($currentUser->rcsid() != $_POST['rcsid'] && !$currentUser->isAdmin()) {
     die('You do not have write access to this user\'s data');
   }
+}
+if ($ACTIONS[$action]['needs_admin'] && !$currentUser->isAdmin()) {
+  die('You must be an administrator to post this request');
 }
 
 // Requested action and user are okay, so attempt to run the request

@@ -1,5 +1,6 @@
 <?
 require_once('php/db/init.php');
+require_once('php/api_calls/rpi_directory_app.php');
 
 $VOICE_PARTS = array('soprano', 'alto', 'tenor', 'bass');
 $PHOTO_DIRECTORY = 'photos/members/';
@@ -110,6 +111,30 @@ class Member {
       die('Could not move the uploaded file');
     }
   }
+}
+
+function addMemberFromDirectory($rcsid) {
+  global $db;
+
+  $memberInfo = getUserFromDirectory($rcsid);
+  if (!$memberInfo) {
+    die('User does not exist in the RPI Directory');
+  }
+
+  $addMember = $db->prepare(
+    'INSERT INTO `members`(
+      `rcsid`, `first_name`, `full_name`, `major`, `yog`
+    ) VALUES (
+      :rcsid, :first_name, :full_name, :major, :yog
+    );'
+  );
+  $addMember->execute(array(
+    ':rcsid' => $memberInfo->rcsid,
+    ':first_name' => ucwords($memberInfo->first_name),
+    ':full_name' => $memberInfo->name,
+    ':major' => ucwords($memberInfo->major),
+    ':yog' => getYogFromClass($memberInfo->year)
+  ));
 }
 
 function editMember($memberInfo) {

@@ -7,42 +7,56 @@ $TEMPLATES = array(
   'news' => array(
     'title' => 'News',
     'filename' => 'news.tpl.php',
-    'needs_auth' => False
+    'needs_auth' => False,
+    'needs_admin' => False
   ),
   'about' => array(
     'title' => 'About Us',
     'filename' => 'about.tpl.php',
-    'needs_auth' => False
+    'needs_auth' => False,
+    'needs_admin' => False
   ),
   'photos' => array(
     'title' => 'Photos',
     'filename' => 'photos.tpl.php',
-    'needs_auth' => False
+    'needs_auth' => False,
+    'needs_admin' => False
   ),
   'auditions' => array(
     'title' => 'Auditions',
     'filename' => 'auditions.tpl.php',
-    'needs_auth' => False
+    'needs_auth' => False,
+    'needs_admin' => False
   ),
   'contact' => array(
     'title' => 'Contact',
     'filename' => 'contact.tpl.php',
-    'needs_auth' => False
+    'needs_auth' => False,
+    'needs_admin' => False
   ),
   'member_home' => array(
     'title' => 'Member Home',
     'filename' => 'member_home.tpl.php',
-    'needs_auth' => True
+    'needs_auth' => True,
+    'needs_admin' => False
   ),
   'profile_edit' => array(
     'title' => 'Edit Profile',
     'filename' => 'profile_edit.tpl.php',
-    'needs_auth' => True
+    'needs_auth' => True,
+    'needs_admin' => False
   ),
   'profile_photo_edit' => array(
     'title' => 'Edit Profile Picture',
     'filename' => 'profile_photo_edit.tpl.php',
-    'needs_auth' => True
+    'needs_auth' => True,
+    'needs_admin' => False
+  ),
+  'add_member' => array(
+    'title' => 'Add New Member',
+    'filename' => 'add_member.tpl.php',
+    'needs_auth' => True,
+    'needs_admin' => True
   )
 );
 $DEFAULT_TEMPLATE = 'news';
@@ -75,9 +89,15 @@ function templatePrint($templateName, $indent=0) {
   global $TEMPLATES, $DEFAULT_TEMPLATE, $TEMPLATE_PATH, $SITE_TITLE, $currentUser;
   $prefix = str_repeat('  ', $indent);
 
+  // Check if the user is authorized for this page
   if ($TEMPLATES[$templateName]['needs_auth'] && !$currentUser->exists()) {
     echo $prefix .
       "<div class='row'>You must be a current member of $SITE_TITLE to access this area.</div>";
+    return;
+  }
+  if ($TEMPLATES[$templateName]['needs_admin'] && !$currentUser->isAdmin()) {
+    echo $prefix .
+      "<div class='row'>You must be an administrator to access this area.</div>";
     return;
   }
 
