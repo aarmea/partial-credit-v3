@@ -170,4 +170,10 @@ function listMembersAlpha() {
   $query->execute();
   return $query->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function removeMember($rcsid) {
+  global $db;
+  $query = $db->prepare("DELETE FROM `members` WHERE `rcsid`=:rcsid");
+  $query->execute(array(':rcsid' => $rcsid));
+}
 ?>

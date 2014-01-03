@@ -30,6 +30,15 @@ $ACTIONS = array(
     'needs_auth' => true,
     'verify_rcsid' => false,
     'needs_admin' => true
+  ),
+  'remove_member' => array(
+    'execute' => function() {
+      removeMember($_POST['rcsid']);
+    },
+    'redirect' => './?p=manage_members',
+    'needs_auth' => true,
+    'verify_rcsid' => false,
+    'needs_admin' => true
   )
 );
 

@@ -63,6 +63,12 @@ $TEMPLATES = array(
     'filename' => 'manage_members.tpl.php',
     'needs_auth' => True,
     'needs_admin' => True
+  ),
+  'remove_member' => array(
+    'title' => 'Remove Member',
+    'filename' => 'remove_member.tpl.php',
+    'needs_auth' => True,
+    'needs_admin' => True
   )
 );
 $DEFAULT_TEMPLATE = 'news';
