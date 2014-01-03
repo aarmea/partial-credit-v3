@@ -1,8 +1,10 @@
 <?
 require_once('php/classes/member.php');
 
-$profileEdited = $currentUser;
-// TODO: Allow administrators to edit other member's profiles
+$profileEdited = new Member($_GET['member']);
+if (!$currentUser->isAdmin() || !$profileEdited->exists()) {
+  $profileEdited = $currentUser;
+}
 
 function voiceParts($selectedPart, $indent=0) {
   global $INDENT, $VOICE_PARTS;

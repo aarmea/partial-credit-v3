@@ -1,8 +1,11 @@
 <?
 require_once('php/classes/member.php');
 
-$profileEdited = $currentUser;
-// TODO: Allow administrators to edit other member's profile pictures
+$profileEdited = new Member($_GET['member']);
+if (!$currentUser->isAdmin() || !$profileEdited->exists()) {
+  $profileEdited = $currentUser;
+}
+
 ?><div class="row">
   <div class="large-12 columns">
     <h1>Edit Profile Picture: <?=$profileEdited->rcsid()?></h1>
