@@ -47,7 +47,7 @@ if ($ACTIONS[$action]['needs_auth']) {
 } else {
   $currentUser = false;
 }
-if ($actions[$action]['verify_rcsid']) {
+if ($ACTIONS[$action]['verify_rcsid']) {
   if ($currentUser->rcsid() != $_POST['rcsid'] && !$currentUser->isAdmin()) {
     die('You do not have write access to this user\'s data');
   }
