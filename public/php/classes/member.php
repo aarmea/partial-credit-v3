@@ -118,7 +118,13 @@ function addMemberFromDirectory($rcsid) {
 
   $memberInfo = getUserFromDirectory($rcsid);
   if (!$memberInfo) {
-    die('User does not exist in the RPI Directory');
+    // User was not found in the directory. Fill in default data.
+    $memberInfo = new stdClass();
+    $memberInfo->{'rcsid'} = $rcsid;
+    $memberInfo->{'first_name'} = 'unknown';
+    $memberInfo->{'name'} = 'Unknown RPI student';
+    $memberInfo->{'major'} = '';
+    $memberInfo->{'year'} = '';
   }
 
   $addMember = $db->prepare(
