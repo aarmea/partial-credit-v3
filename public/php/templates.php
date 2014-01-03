@@ -60,7 +60,7 @@ $TEMPLATES = array(
   ),
   'manage_members' => array(
     'title' => 'Manage Members',
-    'filename' => 'list_members.tpl.php',
+    'filename' => 'manage_members.tpl.php',
     'needs_auth' => True,
     'needs_admin' => True
   )
