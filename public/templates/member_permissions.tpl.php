@@ -14,7 +14,7 @@ $profileEdited = new Member($_GET['member']);
             <label for="admin">Administrator</label>
           </div>
           <div class="row">
-            <button type="submit" name="action" value="change_member_permissions">Change permissions</button>
+            <button type="submit" name="action" value="change_member_permissions" class="warning">Change permissions</button>
           </div>
         </div>
       </div>

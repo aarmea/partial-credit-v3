@@ -11,8 +11,8 @@
             <ul class="actions-list">
               <li><a href="?p=profile_edit&member=<?=$member['rcsid']?>">Edit Profile</a></li>
               <li><a href="?p=profile_photo_edit&member=<?=$member['rcsid']?>">Change Photo</a></li>
-              <li><a href="?p=member_permissions&member=<?=$member['rcsid']?>">Permissions</a></li>
-              <li><a href="?p=remove_member&member=<?=$member['rcsid']?>">Remove</a></li>
+              <li><a href="?p=member_permissions&member=<?=$member['rcsid']?>" class="warning">Permissions</a></li>
+              <li><a href="?p=remove_member&member=<?=$member['rcsid']?>" class="alert">Remove</a></li>
             </ul>
           </li>
 <? } ?>

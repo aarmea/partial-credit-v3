@@ -8,7 +8,7 @@ $profileEdited = new Member($_GET['member']);
     <p>Are you sure you want to remove <?=$profileEdited->fullName()?>? This cannot be undone.</p>
     <form action="post.php" method="post">
       <input type="hidden" name="rcsid" value="<?=$profileEdited->rcsid()?>">
-      <button type="submit" name="action" value="remove_member">Remove</button>
+      <button type="submit" name="action" value="remove_member" class="alert">Remove</button>
     </form>
 <? } else { ?>
 

@@ -86,3 +86,18 @@ footer {
     float: right;
   }
 }
+a.alert {
+  color: $alert-color;
+}
+a.alert:hover {
+  color: fade-out($alert-color, .25);
+}
+a.warning {
+  color: $warning-color;
+}
+a.warning:hover {
+  color: fade-out($warning-color, .25);
+}
+button.warning {
+  @include button($bg:$warning-color);
+}
