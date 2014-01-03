@@ -33,7 +33,8 @@ $ACTIONS = array(
   ),
   'remove_member' => array(
     'execute' => function() {
-      removeMember($_POST['rcsid']);
+      $profileEdited = new Member($_POST['rcsid']);
+      $profileEdited->deleteFromDB();
     },
     'redirect' => './?p=manage_members',
     'needs_auth' => true,

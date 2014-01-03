@@ -111,6 +111,15 @@ class Member {
       die('Could not move the uploaded file');
     }
   }
+
+  function deleteFromDB() {
+    global $db;
+    if ($this->photoURL()) {
+      unlink($this->photoURL());
+    }
+    $query = $db->prepare("DELETE FROM `members` WHERE `rcsid`=:rcsid");
+    $query->execute(array(':rcsid' => $this->rcsid));
+  }
 }
 
 function addMemberFromDirectory($rcsid) {
@@ -169,11 +178,5 @@ function listMembersAlpha() {
   $query = $db->prepare("SELECT `rcsid`, `full_name` FROM `members`");
   $query->execute();
   return $query->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function removeMember($rcsid) {
-  global $db;
-  $query = $db->prepare("DELETE FROM `members` WHERE `rcsid`=:rcsid");
-  $query->execute(array(':rcsid' => $rcsid));
 }
 ?>
