@@ -46,7 +46,7 @@ require_once('php/templates.php');
 
     <!-- Partial Credit footer -->
     <footer id="pc-footer" class="row">
-      <a href="?p=member_home" class="pull-right">Member Login</a>
+      <a href="?p=member_home" class="right">Member Login</a>
       &copy; 2013 Partial Credit
       &middot; Site by <a href="http://www.albertarmea.com">Albert Armea</a>
       &middot; Source on <a href="https://github.com/aarmea/partial-credit-v3">GitHub</a>

@@ -4,11 +4,6 @@
 @import "compass/typography/lists/bullets";
 @import "compass/typography/lists/horizontal-list";
 
-// Like Bootstrap's "pull-right"
-.pull-right {
-  float: right;
-}
-
 // Foundation's textarea height is broken
 // https://github.com/zurb/foundation/issues/2127
 textarea {
