@@ -43,6 +43,20 @@ class Member {
     $this->bio = $member->bio;
   }
 
+  public static function fromRow($row) {
+    $member = new Member('');
+    $member->rcsid = $row->rcsid;
+    $member->isAdmin = $row->is_admin;
+    $member->firstName = $row->first_name;
+    $member->fullName = $row->full_name;
+    $member->nickname = $row->nickname;
+    $member->voicePart = $row->voice_part;
+    $member->major = $row->major;
+    $member->yog = $row->yog;
+    $member->bio = $row->bio;
+    return $member;
+  }
+
   public function exists() {
     return !empty($this->rcsid);
   }
@@ -190,5 +204,23 @@ function listMembersAlpha() {
   $query = $db->prepare("SELECT `rcsid`, `full_name` FROM `members`");
   $query->execute();
   return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getAllInVoicePart($voicePart) {
+  global $db;
+  // Request needed columns from `members`
+  $query = $db->prepare(
+    'SELECT `rcsid`, `is_admin`, `first_name`, `full_name`,
+    `nickname`, `voice_part`, `major`, `yog`, `bio`
+    FROM `members` WHERE `voice_part` = :voice_part;'
+  );
+  $query->execute(array(':voice_part' => strtolower($voicePart)));
+
+  // Create corresponding Member objects using Member::fromRow()
+  $members = array();
+  while ($row = $query->fetch()) {
+    $members[] = Member::fromRow($row);
+  }
+  return $members;
 }
 ?>

@@ -73,6 +73,49 @@ footer {
   font-size: small;
 }
 
+// About page
+.member {
+  // Based on the media object
+  // http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
+  margin: 1em;
+  overflow: hidden;
+  _overflow: visible;
+  zoom: 1;
+  .member-text {
+    @media #{$medium-up} {
+      overflow: hidden;
+      _overflow: visible;
+      zoom: 1;
+    }
+  }
+  .member-image {
+    @media #{$medium-up} {
+      float: left;
+      display: block;
+      margin-right: 1em;
+    }
+    height: 240px;
+    width: 180px;
+    background-size: cover;
+    background-position: center center;
+  }
+  h3 {
+    color: $body-font-color;
+  }
+  .member-nickname {
+    color: darken($body-font-color, 25%);
+    font-weight: normal;
+  }
+  .member-class {
+    margin-top: -0.75em;
+    font-size: small;
+    font-weight: bold;
+  }
+  p {
+    margin-top: 0.5em;
+  }
+}
+
 // Member management page
 .member-list {
   @include no-bullets;
