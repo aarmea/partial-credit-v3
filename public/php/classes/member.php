@@ -6,6 +6,7 @@ $VOICE_PARTS = array('soprano', 'alto', 'tenor', 'bass');
 $PHOTO_DIRECTORY = 'photos/members/';
 $PHOTO_EXTENSION = '.jpg';
 $PHOTO_MAX_SIZE = 1048576; // bytes
+$DEFAULT_PHOTO = 'images/member-placeholder.jpg';
 
 class Member {
   private $rcsid = "";
@@ -83,12 +84,12 @@ class Member {
   }
 
   public function photoURL() {
-    global $PHOTO_DIRECTORY, $PHOTO_EXTENSION;
+    global $PHOTO_DIRECTORY, $PHOTO_EXTENSION, $DEFAULT_PHOTO;
     $path = $PHOTO_DIRECTORY . $this->rcsid . $PHOTO_EXTENSION;
     if (file_exists($path)) {
       return $path;
     } else {
-      return false;
+      return $DEFAULT_PHOTO;
     }
   }
 
@@ -124,8 +125,8 @@ class Member {
   }
 
   function deleteFromDB() {
-    global $db;
-    if ($this->photoURL()) {
+    global $db, $DEFAULT_PHOTO;
+    if ($this->photoURL() != $DEFAULT_PHOTO) {
       unlink($this->photoURL());
     }
     $query = $db->prepare("DELETE FROM `members` WHERE `rcsid`=:rcsid");
