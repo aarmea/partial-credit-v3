@@ -50,7 +50,12 @@ try {
   // Create the initial administrator user
   $adminUserInfo = getUserFromDirectory($rcsid);
   if (!$adminUserInfo) {
-    die("User $rcsid does not exist in the directory.");
+    $adminUserInfo = new stdClass();
+    $adminUserInfo->{'rcsid'} = $rcsid;
+    $adminUserInfo->{'first_name'} = 'unknown';
+    $adminUserInfo->{'name'} = 'Unknown RPI student';
+    $adminUserInfo->{'major'} = '';
+    $adminUserInfo->{'year'} = '';
   }
   $createAdmin = $dbh->prepare(
     "INSERT INTO `members`(
