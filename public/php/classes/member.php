@@ -3,10 +3,10 @@ require_once('php/db/init.php');
 require_once('php/api_calls/rpi_directory_app.php');
 
 $VOICE_PARTS = array('soprano', 'alto', 'tenor', 'bass');
-$PHOTO_DIRECTORY = 'photos/members/';
-$PHOTO_EXTENSION = '.jpg';
-$PHOTO_MAX_SIZE = 1048576; // bytes
-$DEFAULT_PHOTO = 'images/member-placeholder.jpg';
+$MEMBER_PHOTO_DIRECTORY = 'photos/members/';
+$MEMBER_PHOTO_EXTENSION = '.jpg';
+$MEMBER_PHOTO_MAX_SIZE = 1048576; // bytes
+$DEFAULT_MEMBER_PHOTO = 'images/member-placeholder.jpg';
 
 class Member {
   private $rcsid = "";
@@ -98,22 +98,22 @@ class Member {
   }
 
   public function photoURL() {
-    global $PHOTO_DIRECTORY, $PHOTO_EXTENSION, $DEFAULT_PHOTO;
-    $path = $PHOTO_DIRECTORY . $this->rcsid . $PHOTO_EXTENSION;
+    global $MEMBER_PHOTO_DIRECTORY, $MEMBER_PHOTO_EXTENSION, $DEFAULT_MEMBER_PHOTO;
+    $path = $MEMBER_PHOTO_DIRECTORY . $this->rcsid . $MEMBER_PHOTO_EXTENSION;
     if (file_exists($path)) {
       return $path;
     } else {
-      return $DEFAULT_PHOTO;
+      return $DEFAULT_MEMBER_PHOTO;
     }
   }
 
   public function replacePhoto($newFileInfo) {
-    global $PHOTO_DIRECTORY, $PHOTO_MAX_SIZE, $PHOTO_EXTENSION;
+    global $MEMBER_PHOTO_DIRECTORY, $MEMBER_PHOTO_MAX_SIZE, $MEMBER_PHOTO_EXTENSION;
 
     // Sanity checking
     if ($newFileInfo['size'] == 0) {
       die('No file received.');
-    } elseif ($newFileInfo['size'] > $PHOTO_MAX_SIZE) {
+    } elseif ($newFileInfo['size'] > $MEMBER_PHOTO_MAX_SIZE) {
       die('Uploaded photo is too large.');
     } elseif (exif_imagetype($newFileInfo['tmp_name']) != IMAGETYPE_JPEG) {
       die('Invalid image format');
@@ -121,7 +121,7 @@ class Member {
 
     // Move the new file into place
     if (!move_uploaded_file($newFileInfo['tmp_name'],
-      $PHOTO_DIRECTORY . $this->rcsid . $PHOTO_EXTENSION))
+      $MEMBER_PHOTO_DIRECTORY . $this->rcsid . $MEMBER_PHOTO_EXTENSION))
     {
       die('Could not move the uploaded file');
     }
@@ -139,8 +139,8 @@ class Member {
   }
 
   function deleteFromDB() {
-    global $db, $DEFAULT_PHOTO;
-    if ($this->photoURL() != $DEFAULT_PHOTO) {
+    global $db, $DEFAULT_MEMBER_PHOTO;
+    if ($this->photoURL() != $DEFAULT_MEMBER_PHOTO) {
       unlink($this->photoURL());
     }
     $query = $db->prepare("DELETE FROM `members` WHERE `rcsid`=:rcsid");
