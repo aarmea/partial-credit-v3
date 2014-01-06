@@ -60,7 +60,7 @@ function addPhoto($photoInfo) {
   $addPhoto->execute(array(
     ':filename' => $filename,
     ':uploader_rcsid' => $photoInfo['rcsid'],
-    ':caption' => $photoInfo['photo-caption']
+    ':caption' => htmlspecialchars($photoInfo['photo-caption'])
   ));
 }
 ?>
