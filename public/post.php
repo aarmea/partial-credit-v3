@@ -1,6 +1,7 @@
 <?
 require_once('php/auth/cas_init.php');
 require_once('php/classes/member.php');
+require_once('php/classes/photo.php');
 
 $ACTIONS = array(
   'profile_edit' => array(
@@ -51,6 +52,15 @@ $ACTIONS = array(
     'needs_auth' => true,
     'verify_rcsid' => false,
     'needs_admin' => true
+  ),
+  'add_photo' => array(
+    'execute' => function() {
+      addPhoto(array_merge($_POST, $_FILES['photo-file']));
+    },
+    'redirect' => './?p=manage_photos',
+    'needs_auth' => true,
+    'verify_rcsid' => true,
+    'needs_admin' => false
   )
 );
 

@@ -47,6 +47,20 @@ try {
   $dbh->exec($sql);
   echo "Successfully created the members table\n";
 
+  // Create the photos table
+  // `uploader_rcsid` is not a FOREIGN KEY because we don't want to delete
+  // pictures that a graduating member uploaded
+  $sql = "CREATE TABLE IF NOT EXISTS `photos` (
+    `photo_id` INT NOT NULL AUTO_INCREMENT,
+    `filename` VARCHAR(24) NOT NULL,
+    `uploader_rcsid` VARCHAR(10) NOT NULL,
+    `date_uploaded` DATETIME NOT NULL,
+    `caption` VARCHAR(1024),
+    PRIMARY KEY(`photo_id`)
+  ) ENGINE=InnoDB;";
+  $dbh->exec($sql);
+  echo "Successfully created the photos table\n";
+
   // Create the initial administrator user
   $adminUserInfo = getUserFromDirectory($rcsid);
   if (!$adminUserInfo) {
@@ -75,6 +89,8 @@ try {
 } catch (PDOException $e) {
   die("Database error:\n" . $e->getMessage());
 }
+
+// TODO: Create the photo directories: photos/(members|photos_page|thumbnails)
 
 echo "Installation succeeded.";
 ?>

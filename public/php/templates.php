@@ -75,6 +75,12 @@ $TEMPLATES = array(
     'filename' => 'remove_member.tpl.php',
     'needs_auth' => True,
     'needs_admin' => True
+  ),
+  'add_photo' => array(
+    'title' => 'Add Photo',
+    'filename' => 'add_photo.tpl.php',
+    'needs_auth' => True,
+    'needs_admin' => False
   )
 );
 $DEFAULT_TEMPLATE = 'news';
