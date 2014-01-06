@@ -90,7 +90,5 @@ try {
   die("Database error:\n" . $e->getMessage());
 }
 
-// TODO: Create the photo directories: photos/(members|photos_page|thumbnails)
-
 echo "Installation succeeded.";
 ?>

@@ -6,9 +6,6 @@ public/bower_components
 public/stylesheets
 public/.sass-cache
 
-# Uploaded files
-public/photos
-
 # OS-specific indices
 .DS_Store
 Thumbs.db
