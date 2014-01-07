@@ -20,7 +20,16 @@
           <div class="row">
             <div class="small-offset-3 small-9">
               <button type="submit" name="action"
-                value="edit_photo">Submit</button>
+                value="edit_photo">Edit caption</button>
+            </div>
+          </div>
+        </form>
+        <form action="post.php" method="post">
+          <input type="hidden" name="photo_id" value="<?=$photoEdited->photoId()?>">
+          <div class="row">
+            <div class="small-offset-3 small-9">
+              <button type="submit" name="action"
+                value="delete_photo" class="alert">Delete photo</button>
             </div>
           </div>
         </form>

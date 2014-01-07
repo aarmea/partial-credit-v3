@@ -70,6 +70,16 @@ $ACTIONS = array(
     'needs_auth' => true,
     'verify_rcsid' => false,
     'needs_admin' => false
+  ),
+  'delete_photo' => array(
+    'execute' => function() {
+      $photoEdited = new Photo($_POST['photo_id']);
+      $photoEdited->deleteFromDB();
+    },
+    'redirect' => './?p=manage_photos',
+    'needs_auth' => true,
+    'verify_rcsid' => false,
+    'needs_admin' => false
   )
 );
 

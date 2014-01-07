@@ -71,6 +71,20 @@ class Photo {
   public function caption() {
     return $this->caption;
   }
+
+  public function deleteFromDB() {
+    global $db;
+    if (!$this->exists()) {
+      die('This photo does not exist');
+    }
+
+    // Attempt to delete the DB row first
+    $query = $db->prepare('DELETE FROM `photos` WHERE `photo_id`=:photo_id');
+    $query->execute(array(':photo_id' => $this->photoId));
+    // If the DB row deletion fails, the rest of this is not run
+    unlink($this->thumbnailPath());
+    unlink($this->path());
+  }
 }
 
 // make_thumb from http://davidwalsh.name/create-image-thumbnail-php
