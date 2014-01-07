@@ -23,6 +23,7 @@ class Member {
     // TODO: Performance: Add a lightweight constructor that doesn't get all of
     // these parameters
     global $db;
+    if (empty($rcsid)) return; // This will always be invalid, so don't bother querying
     $query = $db->prepare(
       "SELECT `rcsid`, `is_admin`, `first_name`, `full_name`,
       `nickname`, `voice_part`, `major`, `yog`, `bio`

@@ -16,6 +16,7 @@ class Photo {
 
   public function __construct($photoId) {
     global $db;
+    if ($photoId < 0) return; // This will always be invalid, so don't bother querying
     $query = $db->prepare(
       'SELECT `photo_id`, `filename`, `uploader_rcsid`, `date_uploaded`, `caption`
       FROM `photos` WHERE `photo_id` = :photo_id;'
