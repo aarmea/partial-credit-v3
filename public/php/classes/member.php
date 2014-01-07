@@ -144,11 +144,14 @@ class Member {
     if (!$this->exists()) {
       die('This member does not exist');
     }
+
+    // Attempt to delete the DB row first
+    $query = $db->prepare("DELETE FROM `members` WHERE `rcsid`=:rcsid");
+    $query->execute(array(':rcsid' => $this->rcsid));
+    // If the DB row deletion fails, the rest of this is not run
     if ($this->photoURL() != $DEFAULT_MEMBER_PHOTO) {
       unlink($this->photoURL());
     }
-    $query = $db->prepare("DELETE FROM `members` WHERE `rcsid`=:rcsid");
-    $query->execute(array(':rcsid' => $this->rcsid));
   }
 }
 
