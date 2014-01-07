@@ -61,6 +61,15 @@ $ACTIONS = array(
     'needs_auth' => true,
     'verify_rcsid' => true,
     'needs_admin' => false
+  ),
+  'edit_photo' => array(
+    'execute' => function() {
+      editPhoto($_POST);
+    },
+    'redirect' => './?p=manage_photos',
+    'needs_auth' => true,
+    'verify_rcsid' => false,
+    'needs_admin' => false
   )
 );
 

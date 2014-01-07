@@ -128,6 +128,20 @@ function addPhoto($photoInfo) {
   ));
 }
 
+function editPhoto($photoInfo) {
+  global $db;
+
+  $editPhoto = $db->prepare(
+    'UPDATE `photos`
+    SET `caption`=:caption
+    WHERE `photo_id`=:photo_id;'
+  );
+  $editPhoto->execute(array(
+    ':photo_id' => $photoInfo['photo_id'],
+    ':caption' => htmlspecialchars($photoInfo['caption'])
+  ));
+}
+
 function getAllPhotos() {
   global $db;
   // Request needed columns from `photos`

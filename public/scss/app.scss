@@ -139,3 +139,9 @@ a.warning:hover {
 button.warning {
   @include button($bg:$warning-color);
 }
+
+// Photo being edited
+img.editing {
+  max-height: 480px;
+  padding-bottom: 1em;
+}

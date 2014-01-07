@@ -83,6 +83,12 @@ $TEMPLATES = array(
     'needs_auth' => True,
     'needs_admin' => False
   ),
+  'edit_photo' => array(
+    'title' => 'Edit Photo',
+    'filename' => 'edit_photo.tpl.php',
+    'needs_auth' => True,
+    'needs_admin' => False
+  ),
   'manage_photos' => array(
     'title' => 'Manage Photos',
     'filename' => 'manage_photos.tpl.php',
