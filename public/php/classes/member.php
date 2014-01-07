@@ -141,6 +141,9 @@ class Member {
 
   function deleteFromDB() {
     global $db, $DEFAULT_MEMBER_PHOTO;
+    if (!$this->exists()) {
+      die('This member does not exist');
+    }
     if ($this->photoURL() != $DEFAULT_MEMBER_PHOTO) {
       unlink($this->photoURL());
     }
