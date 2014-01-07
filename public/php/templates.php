@@ -1,6 +1,7 @@
 <?
 require_once('php/auth/cas_init.php');
 require_once('php/classes/member.php');
+require_once('php/classes/photo.php');
 
 $SITE_TITLE = 'Partial Credit';
 $TEMPLATES = array(
@@ -79,6 +80,12 @@ $TEMPLATES = array(
   'add_photo' => array(
     'title' => 'Add Photo',
     'filename' => 'add_photo.tpl.php',
+    'needs_auth' => True,
+    'needs_admin' => False
+  ),
+  'manage_photos' => array(
+    'title' => 'Manage Photos',
+    'filename' => 'manage_photos.tpl.php',
     'needs_auth' => True,
     'needs_admin' => False
   )

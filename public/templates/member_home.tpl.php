@@ -9,6 +9,7 @@
       <li><a href="?p=manage_members">Manage members</a></li>
 <? } ?>
       <li><a href="?p=add_photo">Upload a photo</a></li>
+      <li><a href="?p=manage_photos">Manage photos</a></li>
       <li><a href="logout.php">Log out</a></li>
     </ul>
   </div>
