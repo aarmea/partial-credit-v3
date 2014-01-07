@@ -18,7 +18,7 @@
 <? } ?>
 
         </ul>
-        <a href="?p=add_member">Add a member</a>
+        <a href="?p=add_member" class="button">Add a member</a>
       </div>
     </div>
   </div>
