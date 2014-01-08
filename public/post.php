@@ -1,9 +1,19 @@
 <?
 require_once('php/auth/cas_init.php');
+require_once('php/classes/article.php');
 require_once('php/classes/member.php');
 require_once('php/classes/photo.php');
 
 $ACTIONS = array(
+  'add_article' => array(
+    'execute' => function() {
+      addArticle(array_map('stripslashes', $_POST));
+    },
+    'redirect' => './?p=manage_articles',
+    'needs_auth' => true,
+    'verify_rcsid' => true,
+    'needs_admin' => false
+  ),
   'profile_edit' => array(
     'execute' => function() {
       editMember(array_map('stripslashes', $_POST));

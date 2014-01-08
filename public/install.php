@@ -86,6 +86,22 @@ try {
     ":yog" => getYogFromClass($adminUserInfo->year)
   ));
   echo "Successfully created administrative user $rcsid\n";
+
+  // Create the news articles table
+  // `author_rcsid` is not a FOREIGN KEY because we don't want to delete
+  // articles that a graduating member wrote
+  // `text` is Markdown formatted text
+  $sql = "CREATE TABLE IF NOT EXISTS `articles` (
+    `article_id` INT NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(128) NOT NULL,
+    `date_written` DATETIME NOT NULL,
+    `author_rcsid` VARCHAR(10) NOT NULL,
+    `author_full_name` VARCHAR(64) NOT NULL,
+    `photo_filename` VARCHAR(24),
+    `text` TEXT NOT NULL,
+    PRIMARY KEY(`article_id`)
+  ) ENGINE=InnoDB;";
+  $dbh->exec($sql);
 } catch (PDOException $e) {
   die("Database error:\n" . $e->getMessage());
 }

@@ -1,5 +1,6 @@
 <?
 require_once('php/auth/cas_init.php');
+require_once('php/classes/article.php');
 require_once('php/classes/member.php');
 require_once('php/classes/photo.php');
 
@@ -38,6 +39,18 @@ $TEMPLATES = array(
   'member_home' => array(
     'title' => 'Member Home',
     'filename' => 'member_home.tpl.php',
+    'needs_auth' => True,
+    'needs_admin' => False
+  ),
+  'add_article' => array(
+    'title' => 'Write News Article',
+    'filename' => 'add_article.tpl.php',
+    'needs_auth' => True,
+    'needs_admin' => False
+  ),
+  'manage_articles' => array(
+    'title' => 'Manage Articles',
+    'filename' => 'manage_articles.tpl.php',
     'needs_auth' => True,
     'needs_admin' => False
   ),
