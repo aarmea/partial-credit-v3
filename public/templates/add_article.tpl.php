@@ -3,7 +3,6 @@
     <h1>Write a News Article</h1>
     <p>
       Write a news article here, and it will be posted to the "news" section.
-      You can add a photo to the article after submitting the article text.
     </p>
     <p>
       Format the article using <a href="https://help.github.com/articles/github-flavored-markdown">GitHub Flavored Markdown</a>.
