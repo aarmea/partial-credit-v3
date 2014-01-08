@@ -14,6 +14,25 @@ $ACTIONS = array(
     'verify_rcsid' => true,
     'needs_admin' => false
   ),
+  'edit_article' => array(
+    'execute' => function() {
+      editArticle(array_map('stripslashes', $_POST));
+    },
+    'redirect' => './?p=manage_articles',
+    'needs_auth' => true,
+    'verify_rcsid' => false,
+    'needs_admin' => false
+  ),
+  'remove_article' => array(
+    'execute' => function() {
+      $editedArticle = new Article($_POST['article_id']);
+      $editedArticle->deleteFromDB();
+    },
+    'redirect' => './?p=manage_articles',
+    'needs_auth' => true,
+    'verify_rcsid' => false,
+    'needs_admin' => false
+  ),
   'profile_edit' => array(
     'execute' => function() {
       editMember(array_map('stripslashes', $_POST));

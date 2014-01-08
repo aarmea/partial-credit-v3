@@ -83,6 +83,18 @@ class Article {
   public function textHTML() {
     // TODO
   }
+
+  public function deleteFromDB() {
+    global $db;
+    if (!$this->exists()) {
+      die('This article does not exist');
+    }
+
+    // Attempt to delete the DB row first
+    $query = $db->prepare('DELETE FROM `articles` WHERE `article_id`=:article_id');
+    $query->execute(array(':article_id' => $this->articleId));
+    // TODO: Do something about the photo
+  }
 }
 
 function addArticle($articleInfo) {
@@ -121,5 +133,20 @@ function listArticles() {
     $articles[] = Article::fromRow($row);
   }
   return $articles;
+}
+
+function editArticle($articleInfo) {
+  global $db;
+
+  $editArticle = $db->prepare(
+    'UPDATE `articles`
+    SET `title`=:title, `text`=:text
+    WHERE `article_id`=:article_id;'
+  );
+  $editArticle->execute(array(
+    ':article_id' => $articleInfo['article_id'],
+    ':title' => $articleInfo['article_title'],
+    ':text' => $articleInfo['article_text']
+  ));
 }
 ?>

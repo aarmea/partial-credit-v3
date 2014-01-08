@@ -48,6 +48,18 @@ $TEMPLATES = array(
     'needs_auth' => True,
     'needs_admin' => False
   ),
+  'edit_article' => array(
+    'title' => 'Edit News Article',
+    'filename' => 'edit_article.tpl.php',
+    'needs_auth' => True,
+    'needs_admin' => False
+  ),
+  'remove_article' => array(
+    'title' => 'Remove Article',
+    'filename' => 'remove_article.tpl.php',
+    'needs_auth' => True,
+    'needs_admin' => False
+  ),
   'manage_articles' => array(
     'title' => 'Manage Articles',
     'filename' => 'manage_articles.tpl.php',
