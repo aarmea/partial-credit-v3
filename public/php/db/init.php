@@ -5,6 +5,10 @@ require_once "config.php";
 try {
   $db = new PDO(
     "mysql:host=$DB_HOST;dbname=$DB_NAME;", $DB_USERNAME, $DB_PASSWORD);
+  $setTimeZone = $db->prepare(
+    "SET time_zone = :time_zone;"
+  );
+  $setTimeZone->execute(array(":time_zone" => $DB_TIME_ZONE));
 } catch (PDOException $e) {
   exit("<pre>Database error:\n" . $e->getMessage());
 }

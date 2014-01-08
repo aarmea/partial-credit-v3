@@ -6,6 +6,7 @@ $DB_HOST = "localhost";
 $DB_NAME = "partial_site_v3";
 $DB_USERNAME = "myadmin";
 $DB_PASSWORD = "myadmin";
+$DB_TIME_ZONE = "America/New_York";
 
-date_default_timezone_set("America/New_York");
+date_default_timezone_set($DB_TIME_ZONE);
 ?>
