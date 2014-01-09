@@ -12,7 +12,7 @@
           <time pubdate datetime="<?=$article->dateYMD()?>"><?=$article->dateText()?></time>
         </p>
       </header>
-<?=templatePrefix(demoteUserHeaders($article->textHTML()), $PREFIX . '      ')?>
+<?=templatePrefix(demoteUserHeaders($article->textHTML()), $INDENT . '      ')?>
     </article>
 <? } ?>
 

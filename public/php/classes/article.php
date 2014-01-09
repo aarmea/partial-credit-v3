@@ -1,5 +1,6 @@
 <?
 require_once('php/db/init.php');
+require_once('php/htmlpurifier_init.php');
 require_once('php/classes/member.php');
 
 class Article {
@@ -108,9 +109,7 @@ class Article {
 }
 
 function addArticle($articleInfo) {
-  global $db;
-
-  // TODO: Sanitize user text with HTML Purifier
+  global $db, $purifier;
 
   $author = new Member($articleInfo['rcsid']);
 
@@ -125,7 +124,7 @@ function addArticle($articleInfo) {
     ':title' => $articleInfo['article_title'],
     ':author_rcsid' => $author->rcsid(),
     ':author_full_name' => $author->fullName(),
-    ':text' => $articleInfo['article_text']
+    ':text' => $purifier->purify($articleInfo['article_text'])
   ));
 }
 
@@ -148,9 +147,7 @@ function listArticles() {
 }
 
 function editArticle($articleInfo) {
-  global $db;
-
-  // TODO: Sanitize user text with HTML Purifier
+  global $db, $purifier;
 
   $editArticle = $db->prepare(
     'UPDATE `articles`
@@ -160,7 +157,7 @@ function editArticle($articleInfo) {
   $editArticle->execute(array(
     ':article_id' => $articleInfo['article_id'],
     ':title' => $articleInfo['article_title'],
-    ':text' => $articleInfo['article_text']
+    ':text' => $purifier->purify($articleInfo['article_text'])
   ));
 }
 

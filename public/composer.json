@@ -1,6 +1,7 @@
 {
   "require": {
-    "jasig/phpcas": "dev-master"
-    "erusev/parsedown": "~0.8"
+    "erusev/parsedown": "~0.8",
+    "jasig/phpcas": "dev-master",
+    "ezyang/htmlpurifier": "~4.6"
   }
 }
