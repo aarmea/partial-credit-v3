@@ -8,7 +8,7 @@
       <header>
         <h2><?=$article->title()?></h2>
         <p>
-          Posted by <span class="author"><?=$article->authorName()?> on
+          Posted by <span class="author"><?=$article->authorName()?></span> on
           <time pubdate datetime="<?=$article->dateYMD()?>"><?=$article->dateText()?></time>
         </p>
       <header>
