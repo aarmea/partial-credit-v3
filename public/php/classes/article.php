@@ -91,7 +91,7 @@ class Article {
   }
 
   public function textHTML() {
-    // TODO
+    return Parsedown::instance()->parse($this->text);
   }
 
   public function deleteFromDB() {
@@ -109,6 +109,8 @@ class Article {
 
 function addArticle($articleInfo) {
   global $db;
+
+  // TODO: Sanitize user text with HTML Purifier
 
   $author = new Member($articleInfo['rcsid']);
 
@@ -147,6 +149,8 @@ function listArticles() {
 
 function editArticle($articleInfo) {
   global $db;
+
+  // TODO: Sanitize user text with HTML Purifier
 
   $editArticle = $db->prepare(
     'UPDATE `articles`

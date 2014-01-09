@@ -11,7 +11,7 @@
           Posted by <span class="author"><?=$article->authorName()?></span> on
           <time pubdate datetime="<?=$article->dateYMD()?>"><?=$article->dateText()?></time>
         </p>
-      <header>
+      </header>
 <?=templatePrefix(demoteUserHeaders($article->textHTML()), $PREFIX . '      ')?>
     </article>
 <? } ?>

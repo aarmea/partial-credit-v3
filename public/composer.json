@@ -1,5 +1,6 @@
 {
   "require": {
     "jasig/phpcas": "dev-master"
+    "erusev/parsedown": "~0.8"
   }
 }
