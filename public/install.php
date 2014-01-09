@@ -2,6 +2,7 @@
 // This script sets up the database and required tables for the site. For
 // production use, it is highly recommended to delete this file after
 // installation.
+require_once('vendor/autoload.php');
 require_once('php/api_calls/rpi_directory_app.php');
 require_once('php/auth/cas_init.php');
 require_once('php/db/config.php');

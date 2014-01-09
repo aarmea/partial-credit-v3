@@ -1,4 +1,6 @@
 <?
+require_once('vendor/autoload.php');
+
 require_once('php/auth/cas_init.php');
 require_once('php/classes/article.php');
 require_once('php/classes/member.php');

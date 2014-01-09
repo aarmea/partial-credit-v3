@@ -1,8 +1,5 @@
 <?
 // CAS initialization for logged-in pages
-
-require_once "CAS.php";
-
 require_once "config.php";
 
 // TODO: Switch this off for production

@@ -1,10 +1,15 @@
 # Vagrant instance-specific configuration
 .vagrant
 
-# Foundation/Compass/Bower generated files
+# Foundation/Compass/Bower/Composer generated files
 public/bower_components
 public/stylesheets
 public/.sass-cache
+public/vendor
+public/composer.lock
+
+# Composer itself
+composer.phar
 
 # OS-specific indices
 .DS_Store
