@@ -2,7 +2,6 @@ include_recipe "apt"
 include_recipe "apache2"
 include_recipe "mysql::server"
 include_recipe "php::php5"
-include_recipe "jasig_cas"
 
 # Some neat package (subversion is needed for "subversion" chef ressource)
 %w{ debconf php5-xdebug subversion  }.each do |a_package|
