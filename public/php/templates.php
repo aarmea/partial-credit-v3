@@ -144,6 +144,10 @@ function pageTitle($templateName) {
   return $SITE_TITLE . ': ' . $TEMPLATES[$templateName]['title'];
 }
 
+function templatePrefix($content, $prefix) {
+  return $prefix . str_replace(PHP_EOL, PHP_EOL . $prefix, $content) . PHP_EOL;
+}
+
 // Includes a named template, adding the specified level of indentation.
 // Based heavily on TemplatePrint by @Diogenesthecynic in
 // https://github.com/Diogenesthecynic/Bookswap/blob/master/PHP/templates.inc.php
@@ -167,8 +171,7 @@ function templatePrint($templateName, $indent=0) {
     file_get_contents($TEMPLATE_PATH . $TEMPLATES[$templateName]['filename']));
 
   // Indent all lines of $content.
-  $content =
-    $prefix . str_replace(PHP_EOL, PHP_EOL . $prefix, $content) . PHP_EOL;
+  $content = templatePrefix($content, $prefix);
 
   // Include the indented template.
   // eval() is okay here because:

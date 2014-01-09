@@ -60,6 +60,16 @@ class Article {
     return $this->dateWritten;
   }
 
+  public function dateYMD() {
+    // Date formatted for HTML5 <time datetime=''> microformat
+    return $this->dateWritten->format(DateTime::W3C);
+  }
+
+  public function dateText() {
+    // Date of the form 'January 9, 2014 at 12:32 AM'
+    return $this->dateWritten->format('F j, Y \a\t g:i A');
+  }
+
   public function author() {
     return new Member($this->authorId);
   }
@@ -148,5 +158,30 @@ function editArticle($articleInfo) {
     ':title' => $articleInfo['article_title'],
     ':text' => $articleInfo['article_text']
   ));
+}
+
+// Demotes headers twice in user-provided content
+// Modifying HTML with str_ireplace is okay here because Markdown generates
+// headers without attributes
+function demoteUserHeaders($content) {
+  return str_ireplace(
+    array(
+      '<h6', '</h6>',
+      '<h5', '</h5>',
+      '<h4', '</h4>',
+      '<h3', '</h3>',
+      '<h2', '</h2>',
+      '<h1', '</h1>',
+    ),
+    array(
+      '<h6', '</h6>',
+      '<h6', '</h6>',
+      '<h6', '</h6>',
+      '<h5', '</h5>',
+      '<h4', '</h4>',
+      '<h3', '</h3>',
+    ),
+    $content
+  );
 }
 ?>
