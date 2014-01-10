@@ -91,4 +91,4 @@ your system.
 2. Use Composer to install the required dependencies. You may need a GitHub
    account for this step.
 
-        composer install
+        php composer.phar install
