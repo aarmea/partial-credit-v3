@@ -18,8 +18,7 @@ function sendMail($mailInfo) {
     return;
   }
   $headers = 'From: ' . $mailInfo['message_email'];
-  // $to = 'partialcredit@union.rpi.edu';
-  $to = 'test@albertarmea.com';
+  $to = 'partialcredit@union.rpi.edu';
   $subject = '[Contact Page] from ' . $mailInfo['message_name'] . ' regarding ';
   $subject .= $mailInfo['message_subject'];
   if (!mail($to, $subject, $mailInfo['message_content'], $headers)) {
