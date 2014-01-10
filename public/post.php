@@ -5,8 +5,18 @@ require_once('php/auth/cas_init.php');
 require_once('php/classes/article.php');
 require_once('php/classes/member.php');
 require_once('php/classes/photo.php');
+require_once('php/mail.php');
 
 $ACTIONS = array(
+  'send_mail' => array(
+    'execute' => function() {
+      sendMail(array_map('stripslashes', $_POST));
+    },
+    'redirect' => './?p=mail_success',
+    'needs_auth' => false,
+    'verify_rcsid' => false,
+    'needs_admin' => false
+  ),
   'add_article' => array(
     'execute' => function() {
       addArticle(array_map('stripslashes', $_POST));
