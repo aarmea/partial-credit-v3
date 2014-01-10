@@ -77,6 +77,7 @@ try {
     PRIMARY KEY(`article_id`)
   ) ENGINE=InnoDB;";
   $dbh->exec($sql);
+  echo "Successfully created the articles table\n";
 
   // Create the initial administrator user
   $adminUserInfo = getUserFromDirectory($rcsid);
