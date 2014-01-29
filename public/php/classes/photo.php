@@ -116,9 +116,9 @@ function addPhoto($photoInfo) {
     die('No file received.');
   } elseif ($photoInfo['size'] > $PHOTO_MAX_SIZE) {
     die('Uploaded photo is too large.');
-  } elseif (exif_imagetype($photoInfo['tmp_name']) != IMAGETYPE_JPEG) {
-    // TODO: Replace exif_imagetype with something from GD, which the Union's
-    // server actually has
+  } elseif (!in_array('image/jpeg', getimagesize($photoInfo['tmp_name']))) {
+    // This is a hack to get around not being able to index a returned array
+    // getimagesize($photoInfo['tmp_name'])['mime'] != 'image/jpeg'
     die('Invalid image format');
   }
 
