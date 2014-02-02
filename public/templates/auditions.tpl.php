@@ -11,8 +11,8 @@
         <li>Do a volume exercise (crescendo and decrescendo on a single
           pitch)</li>
         <li>Match patterns of notes played on a piano</li>
-        <li>Perform one to two minutes of a song of your choice (usually a
-          verse and a chorus)</li>
+        <li>Perform about one minute of a song of your choice (usually a verse
+          and a chorus)</li>
         <li>Do some impromptu vocal percussion if you can</li>
       </ul>
     </p>
