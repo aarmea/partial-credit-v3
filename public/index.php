@@ -32,8 +32,7 @@ require_once('php/templates.php');
           </div>
           <div class="small-6 show-for-medium-up columns">
             <div class="flex-video widescreen">
-              <!-- TODO: make the video configurable -->
-              <iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/ZZ6ZuQtcHpE?rel=0" frameborder="0" allowfullscreen></iframe>
+              <iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/videoseries?list=PLdq9uijjhztx9uJqq5GjTWtdAJ_m6-D0p&rel=0;3&autohide=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>
         </div>
