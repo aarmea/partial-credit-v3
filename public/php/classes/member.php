@@ -116,7 +116,7 @@ class Member {
       die('No file received.');
     } elseif ($newFileInfo['size'] > $MEMBER_PHOTO_MAX_SIZE) {
       die('Uploaded photo is too large.');
-    } elseif (exif_imagetype($newFileInfo['tmp_name']) != IMAGETYPE_JPEG) {
+    } elseif (!in_array('image/jpeg', getimagesize($newFileInfo['tmp_name']))) {
       die('Invalid image format');
     }
 
